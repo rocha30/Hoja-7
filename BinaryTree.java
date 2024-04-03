@@ -6,16 +6,16 @@
  * @param <E> Tipo de elementos que el árbol puede almacenar, debe ser Comparable.
  */
 public class BinaryTree<E extends Comparable<E>> {
-    private E value;
-    private BinaryTree<E> leftChild;
-    private BinaryTree<E> rightChild;
+    private Association<String, String> value;
+    private BinaryTree<Association<String, String>> leftChild;
+    private BinaryTree<Association<String, String>> rightChild;
 
     /**
      * Constructor para crear un nodo de árbol binario con un valor dado.
      *
      * @param value El valor del nodo del árbol binario.
      */
-    public BinaryTree(E value) {
+    public BinaryTree(Association<String, String> value) {
         this.value = value;
         this.leftChild = null;
         this.rightChild = null;
@@ -35,7 +35,7 @@ public class BinaryTree<E extends Comparable<E>> {
      *
      * @param newValue El nuevo valor para insertar en el árbol.
      */
-    public void insert(E newValue) {
+    public void insert(Association<String, String> newValue) {
         if (this.value == null) {
             this.value = newValue;
         } else {
@@ -61,7 +61,7 @@ public class BinaryTree<E extends Comparable<E>> {
      * @param valueToFind El valor a buscar en el árbol.
      * @return El nodo encontrado, o null si el valor no se encuentra en el árbol.
      */
-    public E find(Comparable<E> valueToFind) {
+    public Association<String, String> find(Comparable<Association<String, String>> valueToFind) {
         if (valueToFind.compareTo(this.value) == 0) {
             return this.value;
         } else if (valueToFind.compareTo(this.value) < 0 && this.leftChild != null) {
@@ -83,6 +83,18 @@ public class BinaryTree<E extends Comparable<E>> {
         if (this.rightChild != null) {
             this.rightChild.inOrderTraversal();
         }
+    }
+
+    public BinaryTree<Association<String, String>> getLeftChild() {
+       return this.leftChild;
+    }
+
+    public Association<String, String> getValue() {
+        return this.value;
+    }
+
+    public BinaryTree<Association<String, String>> getRightChild() {
+        return this.rightChild;
     }
 }
 

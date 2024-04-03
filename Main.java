@@ -2,6 +2,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Clase principal que ejecuta el traductor Inglés-Español.
@@ -14,9 +15,11 @@ public class Main {
      * @param args Los argumentos de la línea de comandos.
      */
     public static void main(String[] args) {
+
+        
         System.out.println("Bienvenido al Traductor Inglés a Español.");
         System.out.println("El programa traducirá el texto del archivo 'txt' que ingresemos.");
-        System.out.println("\nLas palabras que no estén en el diccinario están entre paréntesis '()' ");
+        System.out.println("\nLas palabras que no estén en el diccinario están entre asteríscos  (*).");
 
         // Crea un árbol binario para almacenar las asociaciones del diccionario.
         BinaryTree<Association<String, String>> dictionary = new BinaryTree<>();
@@ -52,7 +55,7 @@ public class Main {
                     if (searchResult != null) {
                         System.out.print(searchResult.getValue() + " ");
                     } else {
-                        System.out.print("(" + word + ")");
+                        System.out.print("*" + word + "*");
                     }
                 }
                 System.out.println();
@@ -62,9 +65,16 @@ public class Main {
             System.out.println("Verifica  el path del archivo");
         }
 
+        DiccionarioIngles diccionarioIngles = new DiccionarioIngles(dictionary);
         // Indica que la traducción se ha completado.
         System.out.println("\nAqui esta tu texto traducido, según las palabras que sé. ");
         System.out.println("\n");
 
+        // Obtener las palabras ordenadas en inglés
+        List<String> palabrasOrdenadas = diccionarioIngles.getWordsInOrder();
+        // Imprimir cada palabra
+        for (String palabra : palabrasOrdenadas) {
+            System.out.println(palabra);
+        }
     }
 }
